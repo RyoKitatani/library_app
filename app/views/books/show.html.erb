@@ -1,2 +1,46 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h2>書籍詳細</h2>
+  <div>
+    <%= attachment_image_tag @book, :image, size: "100x100", format: 'jpeg', fallback:"no_image.png" %>
+  </div>
+  <div>
+    書籍名
+    <%= @book.title %>
+  </div>
+  <div>
+    ISBN番号
+    <%= @book.isbn %>
+  </div>
+  <div>
+    著者名
+    <%= @book.auther %>
+  </div>
+  <div>
+    出版者名
+    <%= @book.publisher %>
+  </div>
+  <div>
+    出版年月
+    <%= @book.published_date %>
+  </div>
+  <div>
+    カテゴリー
+    <%= @book.category.name %>
+  </div>
+  <div>
+    容量(ページ数)
+    <%= @book.volume %>
+  </div>
+  <div>
+    貸出状況
+    <%= @book.rental_status %>
+  </div>
+
+<% if user_signed_in? && current_user.is_admin? %>
+<div class="mb-2">
+  <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success w-25"%>
+</div>
+<div>
+ <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-25", data: {confirm: "削除してよろしいでしょうか？"}%>
+</div>
+<% end %>
+

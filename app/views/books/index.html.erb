@@ -1,2 +1,47 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<div class="d-flex">
+  <div class="col-md-8">
+    <h2>書籍一覧</h2>
+    <div class="d-flex flex-wrap">
+    <% @books.each do |b| %>
+      <div class="col-md-3 border rounded mt-2 mb-2">
+      <%= link_to book_path(b) do %>
+      <div>
+        書籍名
+        <%= b.title %>
+      </div>
+      <div>
+        <%= b.isbn %>
+      </div>
+      <div>
+        <%= attachment_image_tag b, :image, size: "50x50", format: 'jpeg', fallback:"no_image.png" %>
+      </div>
+      <div>
+        <%= b.auther %>
+      </div>
+      <div>
+        <%= b.publisher %>
+      </div>
+      <div>
+        <%= b.published_date %>
+      </div>
+      <div>
+        <%= b.category.name %>
+      </div>
+      <div>
+        <%= b.volume %>
+      </div>
+      <div>
+        <%= b.rental_status %>
+      </div>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? && current_user.is_admin? %>
+  <div class="col-md-4">
+    <h2>書籍登録</h2>
+    <%= render "books/new", book: @book %>
+  </div>
+  <% end %>
+</div>

@@ -1,4 +1,5 @@
 <%= form_with model: book, local: true do |f| %>
+  <%= render "layouts/error_messages", resource: book %>
   <div>
     <%= f.label :タイトル %>
     <%= f.text_field :title, placeholder:"書籍のタイトルを入力してください。"%>
