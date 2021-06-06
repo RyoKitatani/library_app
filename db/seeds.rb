@@ -12,7 +12,7 @@ User.create!(name: "Example User",
            password: "123456",
            password_confirmation: "123456",
            is_admin: true)
-           
+
 5.times do |n|
   name = Faker::Name.name
   email = "example#{n + 1}@gmaill.com"
@@ -22,3 +22,18 @@ User.create!(name: "Example User",
             password: password,
             password_confirmation: password)
 end
+
+# 5 time do |n|
+# name = Facker::Book.genre
+# Category.create!(name: name)
+# end
+
+# 5.times do |n|
+#   title = Facker::Book.title
+#   isbn =  978 + Faker::Number.number(digits: 10 )
+#   publisher = Facker::Book.publisher
+#   category_id = n
+#   Book.create!(title: title,
+#               isbn: isbn,
+#               category_id: n,
+#               )
