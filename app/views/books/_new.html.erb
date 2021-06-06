@@ -1,0 +1,41 @@
+<%= form_with model: book, local: true do |f| %>
+  <div>
+    <%= f.label :タイトル %>
+    <%= f.text_field :title, placeholder:"書籍のタイトルを入力してください。"%>
+  </div>
+  <div>
+    <%= f.label :ISBN番号 %>
+    <%= f.text_field :isbn, placeholder:"13桁で入力。"%>
+  </div>
+  <div>
+    <%= f.label :書籍画像 %>
+    <%= f.attachment_field :image %>
+  </div>
+  <div>
+    <%= f.label :著者 %>
+    <%= f.text_field :auther %>
+  </div>
+  <div>
+    <%= f.label :出版者 %>
+    <%= f.text_field :publisher%>
+  </div>
+  <div>
+    <%= f.label :出版月 %>
+    <%= f.text_field :published_date %>
+  </div>
+  <div>
+    <%= f.label :カテゴリー %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, include_blanck: "選択してください"%>
+  </div>
+  <div>
+    <%= f.label :容量・ページ数 %>
+    <%= f.text_field :volume, placeholder:"ページ数を入力してください。"%>
+  </div>
+  <div>
+    <%= f.label :部数 %>
+    <%= f.text_field :stock_num, placeholder:"何冊ありますか？"%>
+  </div>
+  <div>
+    <%= f.submit "書籍登録", class:"btn btn-primary"%>
+  </div>
+<% end %>

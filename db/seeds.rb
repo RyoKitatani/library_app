@@ -23,17 +23,26 @@ User.create!(name: "Example User",
             password_confirmation: password)
 end
 
-# 5 time do |n|
-# name = Facker::Book.genre
-# Category.create!(name: name)
-# end
+5.times do |n|
+  name = Faker::Book.genre
+  Category.create!(name: name)
+end
 
-# 5.times do |n|
-#   title = Facker::Book.title
-#   isbn =  978 + Faker::Number.number(digits: 10 )
-#   publisher = Facker::Book.publisher
-#   category_id = n
-#   Book.create!(title: title,
-#               isbn: isbn,
-#               category_id: n,
-#               )
+
+Book.create!(title: Faker::Book.title,
+             isbn: 978 + Faker::Number.number(digits: 10 ),
+             publisher: Faker::Book.publisher,
+             category_id: 1,
+             stock_num: 0)
+
+5.times do |n|
+  title = Faker::Book.title
+  isbn =  978 + Faker::Number.number(digits: 10 )
+  publisher = Faker::Book.publisher
+  Book.create!(title: title,
+              isbn: isbn,
+              publisher: publisher,
+              category_id: n + 1,
+              stock_num: 1
+              )
+end
