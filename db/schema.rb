@@ -10,7 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_025428) do
+ActiveRecord::Schema.define(version: 2021_06_06_072909) do
+
+  create_table "books", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "isbn", null: false
+    t.string "image_id", null: false
+    t.integer "category_id"
+    t.string "auther"
+    t.string "publisher"
+    t.datetime "published_date"
+    t.integer "volume"
+    t.integer "stock_num", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_books_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.datetime "rental_date"
+    t.datetime "due_date"
+    t.datetime "return_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_rentals_on_book_id"
+    t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
