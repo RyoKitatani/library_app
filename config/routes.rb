@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :rentals, only:[:create, :destroy]
   end
   resources :categories, only:[:index, :new, :create, :edit, :update, :destroy]
+  resources :rentals, only:[:index]
 end

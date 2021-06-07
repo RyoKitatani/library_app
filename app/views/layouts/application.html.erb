@@ -25,6 +25,9 @@
               <%= link_to "書籍一覧", books_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
+              <%= link_to "貸出状況", rentals_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
               <% if current_user.is_admin?%>
