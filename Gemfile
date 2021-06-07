@@ -71,3 +71,4 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 gem "pry-rails"
 gem 'faker', '2.1.2'
+gem 'byebug'

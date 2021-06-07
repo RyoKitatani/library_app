@@ -20,4 +20,8 @@ class Book < ApplicationRecord
     end
   end
 
+  def rentaled_by?(user)
+    rentals.where(user_id: user.id).exists?
+  end
+
 end
