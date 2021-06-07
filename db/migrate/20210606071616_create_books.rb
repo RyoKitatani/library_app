@@ -5,9 +5,9 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.integer   :isbn, null: false
       t.string    :image_id
       t.references :category
-      t.string    :auther
+      t.string    :author
       t.string    :publisher
-      t.datetime  :published_date
+      t.date  :published_date
       t.integer   :volume
       t.integer   :stock_num, null: false
       t.timestamps

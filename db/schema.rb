@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2021_06_06_072909) do
     t.integer "isbn", null: false
     t.string "image_id"
     t.integer "category_id"
-    t.string "auther"
+    t.string "author"
     t.string "publisher"
-    t.datetime "published_date"
+    t.date "published_date"
     t.integer "volume"
     t.integer "stock_num", null: false
     t.datetime "created_at", null: false

@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="col-md-8">
+  <div class="col-md-9">
     <h2>書籍一覧</h2>
     <div class="d-flex flex-wrap">
     <% @books.each do |b| %>
@@ -16,7 +16,7 @@
         <%= attachment_image_tag b, :image, size: "50x50", format: 'jpeg', fallback:"no_image.png" %>
       </div>
       <div>
-        <%= b.auther %>
+        <%= b.author %>
       </div>
       <div>
         <%= b.publisher %>
@@ -39,7 +39,7 @@
     </div>
   </div>
   <% if user_signed_in? && current_user.is_admin? %>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h2>書籍登録</h2>
     <%= render "books/new", book: @book %>
   </div>

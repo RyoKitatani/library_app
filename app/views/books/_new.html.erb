@@ -1,42 +1,44 @@
 <%= form_with model: book, local: true do |f| %>
   <%= render "layouts/error_messages", resource: book %>
-  <div>
-    <%= f.label :タイトル %>
-    <%= f.text_field :title, placeholder:"書籍のタイトルを入力してください。"%>
+  <table>
+  <div class="form-group" class="form-group">
+    <th><%= f.label :タイトル %></th>
+    <td><%= f.text_field :title, class:"form-control", placeholder:"書籍のタイトルを入力してください。"%></td>
   </div>
-  <div>
-    <%= f.label :ISBN番号 %>
-    <%= f.text_field :isbn, placeholder:"13桁で入力。"%>
+  <div class="form-group">
+    <th><%= f.label :ISBN番号 %></th>
+    <td><%= f.text_field :isbn, class:"form-control", placeholder:"13桁で入力。"%></td>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :書籍画像 %>
     <%= f.attachment_field :image %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :著者 %>
-    <%= f.text_field :auther %>
+    <%= f.text_field :author, class:"form-control" %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :出版者 %>
-    <%= f.text_field :publisher%>
+    <%= f.text_field :publisher, class:"form-control" %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :出版月 %>
-    <%= f.text_field :published_date %>
+    <%= f.datetime_select :published_date %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :カテゴリー %>
     <%= f.collection_select :category_id, Category.all, :id, :name, include_blanck: "選択してください"%>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :容量・ページ数 %>
-    <%= f.text_field :volume, placeholder:"ページ数を入力してください。"%>
+    <%= f.text_field :volume, class:"form-control", placeholder:"ページ数を入力してください。"%>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :部数 %>
-    <%= f.text_field :stock_num, placeholder:"何冊ありますか？"%>
+    <%= f.text_field :stock_num, class:"form-control", placeholder:"何冊ありますか？"%>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.submit "書籍登録", class:"btn btn-primary"%>
   </div>
+  </table>
 <% end %>
