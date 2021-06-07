@@ -1,0 +1,18 @@
+<h2>カテゴリー一覧</h2>
+<% @categories.each do |c| %>
+<div>
+  <%= c.id %>
+  <%= c.name %>
+  <%= link_to "編集", edit_category_path(c), class:"btn btn-success"%>
+  <%= link_to "削除", category_path(c), method: :delete,  class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
+</div>
+<% end %>
+
+<h2>カテゴリー追加</h2>
+<%= form_with model: @category, local: true do |f| %>
+<%= render "layouts/error_messages", resource: @category%>
+  <%= f.label :カテゴリー名 %>
+  <%= f.text_field :name, placeholder: "カテゴリー名を追加してください。"%>
+  <%=f.submit "登録", class:"btn btn-success"%>
+<% end %>
+

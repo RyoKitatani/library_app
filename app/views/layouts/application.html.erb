@@ -27,6 +27,11 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
+              <% if current_user.is_admin?%>
+              <li class="nav-item">
+                <%= link_to "カテゴリー", categories_path, class: 'nav-link text-dark' %>
+              </li>
+              <% end %>
             <% else %>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
