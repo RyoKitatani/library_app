@@ -15,7 +15,8 @@ class Book < ApplicationRecord
     if stock_num == 0
        "貸出中"
     else
-      "貸出可能" & "在庫数：#{stock_num}"
+      "貸出可能"
+      "在庫数：#{stock_num}"
     end
   end
 
