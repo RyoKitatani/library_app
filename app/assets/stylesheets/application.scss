@@ -14,5 +14,16 @@
  *= require_self
  */
 @import "bootstrap";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.book-lists {
+  padding-right: 0px;
+  padding-left: 0px;
+  width: 120px;
+  height: 250px;
+}
+
+.title-area {
+  width: 120px;
+}

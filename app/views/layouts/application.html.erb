@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LibraryApp</title>
+    <title>借りルンです</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- bootstrap-datepickerを読み込む -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
 
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm" style="background-color:#7b9ad0;">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand p-4" href="/"></a>
+          <a class="navbar-brand p-4 text-white" href="/">借りルンです</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li class="nav-item">
+              <li class="nav-item ">
                 <%= link_to " 書籍一覧", books_path, class: 'fas fa-book-open nav-link text-white' %>
               </li>
               <% if current_user.is_admin? %>
@@ -55,13 +53,10 @@
             <% end %>
             </ul>
           </div>
-        </div>
       </nav>
     </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class="container">
       <%= yield %>
-    </div>
   </body>
 </html>
