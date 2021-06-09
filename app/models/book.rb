@@ -29,4 +29,12 @@ class Book < ApplicationRecord
     bookmarks.where(user_id: user.id).exists?
   end
 
+  def self.search(search)
+    if search != ""
+      Book.where(['title LIKE(?) OR isbn LIKE(?) OR author LIKE(?)  OR publisher LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+      else
+        Book.order('created_at DESC')
+      end
+  end
+
 end

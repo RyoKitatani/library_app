@@ -1,0 +1,16 @@
+<% if @books== [] %>
+<h2 class = "seach-result">検索結果はありません</h2>
+<% else %>
+<div class = "book-contents">
+  <ul class = "book-list">
+    <% @books.each do |b| %>
+    <li class = "list">
+      <%= link_to book_path(b.id) do %>
+      <h3 class='post-title'><%= b.title %></h3>
+      <p class = "root-show">〜クリックして詳細を見る〜</p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

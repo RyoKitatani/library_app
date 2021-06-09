@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :books, only:[:index, :new, :show, :edit, :create, :update, :destroy] do
     resources :rentals, only:[:create, :destroy]
     resources :bookmarks, only:[:create, :destroy]
+    collection do
+      get 'search'
+    end
   end
   resources :categories, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :rentals, only:[:index]

@@ -1,6 +1,10 @@
 <div class="d-flex">
   <div class="col-md-12">
     <h2>書籍一覧</h2>
+    <%= form_with(url: search_books_path, local: true, method: :get, class: "search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+      <%= form.submit "検索", class: "search-btn" %>
+    <% end %>
      <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item w-50 text-center">
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">貸出可能書籍</a>
