@@ -26,30 +26,28 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to " 書籍一覧", books_path, class: 'fas fa-book-open nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to " 貸出状況", rentals_path, class: 'fas fa-clipboard-list nav-link text-white' %>
-            </li>
-              <% if current_user.is_admin?%>
+              <li class="nav-item">
+                <%= link_to " 書籍一覧", books_path, class: 'fas fa-book-open nav-link text-white' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to " 貸出状況", rentals_path, class: 'fas fa-clipboard-list nav-link text-white' %>
+              </li>
               <li class="nav-item">
                 <%= link_to " カテゴリー", categories_path, class: 'fas fa-folder-open nav-link text-white' %>
               </li>
-              <% end %>
-            <li class="nav-item">
-              <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-white' %>
-            </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to " 新規登録", new_user_registration_path, class: 'fas fa-user nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to " ログイン", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to " ゲストログイン", homes_guest_sign_in_path, method: :post, class: 'fas fa-sign-in-alt nav-link text-white' %>
-            </li>
+              <li class="nav-item">
+                <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-white' %>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <%= link_to " 新規登録", new_user_registration_path, class: 'fas fa-user nav-link text-white' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to " ログイン", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-white' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to " ゲストログイン", homes_guest_sign_in_path, method: :post, class: 'fas fa-sign-in-alt nav-link text-white' %>
+              </li>
             <% end %>
             </ul>
           </div>
