@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   resources :categories, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :rentals, only:[:index]
+  post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
 end
