@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   has_many   :rentals, dependent: :destroy
+  has_many   :bookmarks, dependent: :destroy
   belongs_to :category
 
   attachment :image
@@ -22,6 +23,10 @@ class Book < ApplicationRecord
 
   def rentaled_by?(user)
     rentals.where(user_id: user.id).exists?
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
 
 end

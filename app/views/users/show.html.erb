@@ -2,3 +2,13 @@
 
 <%= @user.name %>
 <%= @user.email %>
+
+
+ <% @bookmarks.each do |b| %>
+ <%= b.book.title %>
+<% if b.user_id == current_user.id %>
+    <%= link_to book_bookmark_path(b.book_id, current_user), method: :delete, local: true do %>
+     <i class="fas fa-bookmark">解除</i>
+    <% end %>
+  <% end %>
+ <% end %>

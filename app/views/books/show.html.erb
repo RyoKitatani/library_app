@@ -1,7 +1,8 @@
 <h2>書籍詳細
 <% if user_signed_in? && current_user.is_admin? %>
+
   <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success w-25"%>
- <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-25", data: {confirm: "削除してよろしいでしょうか？"}%>
+  <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-25", data: {confirm: "削除してよろしいでしょうか？"}%>
 <% end %>
 </h2>
 
@@ -25,7 +26,17 @@
     </div>
   </div>
 </div>
-
+  <div>
+  <% if @book.bookmarked_by?(current_user) %>
+    <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, local: true do %>
+     <i class="fas fa-bookmark">解除</i>
+    <% end %>
+  <% else %>
+    <%= link_to book_bookmarks_path(book_id: @book.id), method: :post, local: true do %>
+     <i class="far fa-bookmark">ブックマーク</i>
+    <% end %>
+  <% end %>
+  </div>
   <div>
     <% if @book.stock_num > 0 %>
       <% if @book.rentaled_by?(current_user) %>
