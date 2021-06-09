@@ -8,10 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- bootstrap-datepickerを読み込む -->
-    <link rel="stylesheet" type="text/css" href="../bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css">
-    <script type="text/javascript" src="../bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="../bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
 
@@ -29,11 +25,19 @@
               <li class="nav-item">
                 <%= link_to " 書籍一覧", books_path, class: 'fas fa-book-open nav-link text-white' %>
               </li>
+              <% if current_user.is_admin? %>
+                <li class="nav-item">
+                  <%= link_to " 書籍登録", new_book_path, class: 'fas fa-book-open nav-link text-white' %>
+                </li>
+              <% end %>
               <li class="nav-item">
                 <%= link_to " 貸出状況", rentals_path, class: 'fas fa-clipboard-list nav-link text-white' %>
               </li>
               <li class="nav-item">
                 <%= link_to " カテゴリー", categories_path, class: 'fas fa-folder-open nav-link text-white' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to " マイページ", user_path(current_user), class: 'fas fa-user nav-link text-white' %>
               </li>
               <li class="nav-item">
                 <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-white' %>

@@ -2,6 +2,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+  end
+
+  def new
     @book = Book.new
   end
 
@@ -16,8 +19,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book)
     else
       flash[:danger] = "書籍の登録に失敗しました"
-      @books = Book.all
-      render :index
+      render :new
     end
   end
 

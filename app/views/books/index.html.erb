@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <h2>書籍一覧</h2>
     <div class="d-flex flex-wrap">
     <% @books.each do |b| %>
@@ -38,10 +38,4 @@
     <% end %>
     </div>
   </div>
-  <% if user_signed_in? && current_user.is_admin? %>
-  <div class="col-md-3">
-    <h2>書籍登録</h2>
-    <%= render "books/new", book: @book %>
-  </div>
-  <% end %>
 </div>
