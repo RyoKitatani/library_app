@@ -22,7 +22,7 @@
         <%= b.publisher %>
       </div>
       <div>
-        <%= b.published_date %>
+        <%= b.published_date.strftime('%Y年%m月') %>
       </div>
       <div>
         <%= b.category.name %>

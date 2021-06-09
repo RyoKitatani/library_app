@@ -1,62 +1,55 @@
-<h2>書籍詳細</h2>
-  <div>
-    <%= attachment_image_tag @book, :image, size: "100x100", format: 'jpeg', fallback:"no_image.png" %>
+<h2>書籍詳細
+<% if user_signed_in? && current_user.is_admin? %>
+  <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success w-25"%>
+ <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-25", data: {confirm: "削除してよろしいでしょうか？"}%>
+<% end %>
+</h2>
+
+<div class="card mb-3" style="max-width: auto;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+     <%= attachment_image_tag @book, :image, width: "100%", height:"100%", format: 'jpeg', fallback:"no_image.png" %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= @book.title %></h5>
+        <p class="card-text">ISBN番号: <%= @book.isbn %></p>
+        <p class="card-text">著者名: <%= @book.author %></p>
+        <p class="card-text">出版者名: <%= @book.publisher %></p>
+        <p class="card-text">出版年月: <%= @book.published_date %></p>
+        <p class="card-text">カテゴリー: <%= @book.category.name %></p>
+        <p class="card-text">容量: <%= @book.volume %> ページ</p>
+        <p class="card-text">貸出状況: <%= @book.rental_status %></p>
+        <p class="card-text"><small class="text-muted">更新日：<%= @book.updated_at.strftime('%Y年%m月%d日')%></small></p>
+      </div>
+    </div>
   </div>
-  <div>
-    書籍名
-    <%= @book.title %>
-  </div>
-  <div>
-    ISBN番号
-    <%= @book.isbn %>
-  </div>
-  <div>
-    著者名
-    <%= @book.author %>
-  </div>
-  <div>
-    出版者名
-    <%= @book.publisher %>
-  </div>
-  <div>
-    出版年月
-    <%= @book.published_date %>
-  </div>
-  <div>
-    カテゴリー
-    <%= @book.category.name %>
-  </div>
-  <div>
-    容量(ページ数)
-    <%= @book.volume %>
-  </div>
-  <div>
-    貸出状況
-    <%= @book.rental_status %>
-  </div>
+</div>
+
   <div>
     <% if @book.stock_num > 0 %>
-      <% unless @book.rentaled_by?(current_user) %>
-        <%= link_to book_rentals_path(book_id: @book.id), method: :post, local: true do %>
+      <% if @book.rentaled_by?(current_user) %>
+        <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-secondary" ,local: true do %>
+         返却する
+        <% end %>
+      <% else %>
+        <%= link_to book_rentals_path(book_id: @book.id), method: :post, class: "btn btn-primary", local: true do %>
           借りる
         <% end %>
       <% end %>
     <% else %>
-      <%= link_to book_rental_path(book_id: @book.id), method: :delete, local: true do %>
+      <div>
+      <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-warning" ,local: true do %>
          返却する
-      <% end %>
-      <div class="btn btn-warning">
-        他の誰かが借りています。貸出中履歴ページへ飛ばす
+        <% end %>
+        <% unless @book.rentaled_by?(current_user) %>
+        <%= link_to rentals_path do %>
+        他の誰かが借りています。
+        <% end %>
+        <% end %>
       </div>
     <% end %>
   </div>
 
-<% if user_signed_in? && current_user.is_admin? %>
-<div class="mb-2">
-  <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success w-25"%>
-</div>
-<div>
- <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-25", data: {confirm: "削除してよろしいでしょうか？"}%>
-</div>
-<% end %>
+
 

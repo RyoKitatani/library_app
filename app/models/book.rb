@@ -16,7 +16,7 @@ class Book < ApplicationRecord
        "貸出中"
     else
       "貸出可能"
-      "在庫数：#{stock_num}"
+      "#{stock_num}冊貸出可能"
     end
   end
 
