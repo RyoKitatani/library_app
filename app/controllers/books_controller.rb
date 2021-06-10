@@ -6,6 +6,38 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+
+    #書籍検索APIの処理
+    if params[:keyword].present?
+      require 'net/http'
+      url = 'https://www.googleapis.com/books/v1/volumes?q='
+      request = url + params[:keyword]
+      enc_str = URI.encode(request)
+      uri = URI.parse(enc_str)
+      json = Net::HTTP.get(uri)
+      @bookjson = JSON.parse(json)
+
+      count = 5
+      @books = Array.new(count).map{Array.new(7)}
+      count.times do |x|
+        @books[x][0] = @bookjson.dig("items", x, "volumeInfo", "title")
+        @books[x][1] = @bookjson.dig("items", x, "volumeInfo", "imageLinks", "thumbnail")
+        @books[x][2] = @bookjson.dig("items", x, "volumeInfo", "authors")
+        @books[x][2] = @books[x][2].join(',') if @books[x][2] #複数著者をカンマで区切る
+        @books[x][3] = @bookjson.dig("items", x, "volumeInfo", "publisher")
+        @books[x][4] = @bookjson.dig("items", x, "volumeInfo", "publishedDate")
+        @books[x][5] = @bookjson.dig("items", x, "volumeInfo", "industryIdentifiers", 1, "identifier")
+        @books[x][6] = @bookjson.dig("items", x, "volumeInfo", "pageCount")
+      end
+    end
+
+      @title = params[:title] if params[:title].present?
+      @code = params[:code] if params[:code].present?
+      @author = params[:author] if params[:author].present?
+      @publisher = params[:publisher] if params[:publisher].present?
+      @published_date = params[:publishedDate] if params[:publishedDate].present?
+      @img = params[:img] if params[:img].present?
+      @page = params[:pageCount] if params[:pageCount].present?
   end
 
   def show

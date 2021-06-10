@@ -6,7 +6,6 @@ class Book < ApplicationRecord
   attachment :image
 
   validates :title, presence: true, length: {maximum: 100}
-  validates :isbn, presence: true, length: { is: 13}
   validates :author, presence: true, length: {maximum: 30 }
   validates :publisher, presence: true, length: {maximum: 30 }
   validates :volume, presence: true, length: {maximum: 3 }
