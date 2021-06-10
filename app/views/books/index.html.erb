@@ -22,7 +22,7 @@
               <%= link_to book_path(b) do %>
                   <%= attachment_image_tag b, :image, width: "120px", height:"170px", format: 'jpeg', fallback:"no_image.png", class:"book-img" %>
                 <div class="title-area mx-auto">
-                  <%= b.title %>
+                  <%= b.title.truncate(20) %>
                 </div>
               <% end %>
             </div>
