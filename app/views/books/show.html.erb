@@ -8,9 +8,9 @@
   <div class="row no-gutters">
     <div class="col-md-6 col-sm-12 text-center">
       <% if @book.image_url.nil? %>
-        <img src="/assets/no_image.png" width="280" vspace="2">
+        <img src="/assets/no_image.png" width="300" vspace="2">
       <% else %>
-        <img src="<%= @book.image_url %>" width="280" vspace="2">
+        <img src="<%= @book.image_url %>" width="300" vspace="2">
       <% end %>
     </div>
     <div class="col-md-5 col-sm-12">
@@ -30,26 +30,33 @@
           <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
         <% end %>
           <% if @book.bookmarked_by?(current_user) %>
-          <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-3", local: true do %>
-          ブックマークをやめる<i class="fas fa-bookmark"></i>
-          <% end %>
-        <% else %>
-          <%= link_to book_bookmarks_path(book_id: @book.id), method: :post, class:"btn btn-info w-100 mb-3", local: true do %>
-            ブックマークする<i class="far fa-bookmark"></i>
-          <% end %>
-        <% end %>
-          <% if @book.stock_num == 0  && @book.rentaled_by?(current_user) %>
-            <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-danger w-100" ,local: true do %>
-              返却する
+            <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-3", local: true do %>
+            ブックマークをやめる<i class="fas fa-bookmark"></i>
             <% end %>
           <% else %>
-            <%= link_to book_rentals_path(book_id: @book.id), method: :post, class: "btn btn-primary w-100", local: true do %>
-              借りる
+            <%= link_to book_bookmarks_path(book_id: @book.id), method: :post, class:"btn btn-info w-100 mb-3", local: true do %>
+              ブックマークする<i class="far fa-bookmark"></i>
             <% end %>
           <% end %>
-          <% unless @book.rentaled_by?(current_user) %>
-            <%= link_to rentals_path, class: "btn btn-warning w-100" do %>
-              他の誰かが借りています。
+          <% if @book.stock_num > 0 %>
+            <% if @book.rentaled_by?(current_user) %>
+              <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-danger w-100" ,local: true do %>
+                返却する
+              <% end %>
+            <% else %>
+              <%= link_to book_rentals_path(book_id: @book.id), method: :post, class: "btn btn-primary w-100", local: true do %>
+                借りる
+              <% end %>
+            <% end %>
+          <% else %>
+            <% if @book.rentaled_by?(current_user) %>
+              <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-danger w-100" ,local: true do %>
+                返却する
+              <% end %>
+            <% else %>
+              <%= link_to rentals_path, class: "btn btn-warning w-100" do %>
+                他の誰かが借りています。
+              <% end %>
             <% end %>
           <% end %>
         <p class="card-text mt-5"><small class="text-muted">更新日：<%= @book.updated_at.strftime('%Y年%m月%d日')%></small></p>

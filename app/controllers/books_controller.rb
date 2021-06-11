@@ -42,6 +42,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @rental = Rental.find_by(user_id: current_user.id)
   end
 
   def create
