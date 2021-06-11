@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      book: 書籍
+      user: ユーザー
+      rental: レンタル
+      category: カテゴリー
+    attributes:
+      book:
+        title: タイトル
+        isbn: 詳細内容 
+        author: 著者
+        category: カテゴリー名
+        publisher: 出版者
+        published_date: 出版月
+        volume: ページ数
+        stock_num: 部数
+      category:
+        name: カテゴリー名

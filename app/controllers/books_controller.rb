@@ -48,10 +48,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(books_params)
     if @book.save
-      flash[:success] = "書籍の登録が完了しました。"
+      flash.now[:success] = "書籍の登録が完了しました。"
       redirect_to book_path(@book)
     else
-      flash[:danger] = "書籍の登録に失敗しました"
       render :new
     end
   end
@@ -66,7 +65,6 @@ class BooksController < ApplicationController
       flash[:success] = "書籍情報を更新しました。"
       redirect_to book_path(@book)
     else
-      flash[:danger] = "書籍情報の更新に失敗しました"
       render :edit
     end
   end
@@ -77,7 +75,6 @@ class BooksController < ApplicationController
       flash.now[:success] = "書籍情報を削除しました。"
       redirect_to books_path
     else
-      flash.now[:danger] = "書籍情報の削除に失敗しました。"
       render :show
     end
   end
