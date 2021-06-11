@@ -1,18 +1,37 @@
-<h2>カテゴリー一覧</h2>
-<% @categories.each do |c| %>
+<%= render "layouts/flash"%>
+<div class="container">
+  <div class="col-md-12 pt-3">
+    <h2 class="text-center mt-5 font-weight-bold">カテゴリー登録</h2>
+    <%= form_with model: @category, local: true do |f| %>
+    <%= render "layouts/error_messages", resource: @category%>
+      <div class="form-group mt-4">
+        <%= f.text_field :name, class:"w-100 form-control", placeholder: "カテゴリー名を追加してください。"%>
+        <%=f.submit "登録", class:"btn btn-success w-100"%>
+      </div>
+    <% end %>
+    <h2 class="text-center mt-5 font-weight-bold mb-4">カテゴリー一覧</h2>
 <div>
-  <%= c.id %>
-  <%= c.name %>
-  <%= link_to "編集", edit_category_path(c), class:"btn btn-success"%>
-  <%= link_to "削除", category_path(c), method: :delete,  class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="text-center">
+      <th>No.</th>
+      <th>カテゴリー名</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <% @categories.each do |c| %>
+  <tbody>
+    <tr>
+      <td class="text-center"><%= c.id %></td>
+      <td> <%= c.name %></td>
+      <td class="text-center">
+        <%= link_to "編集", edit_category_path(c), class:"btn btn-success"%>
+         <%= link_to "削除", category_path(c), method: :delete,  class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+
+</table>
+
 </div>
-<% end %>
-
-<h2>カテゴリー追加</h2>
-<%= form_with model: @category, local: true do |f| %>
-<%= render "layouts/error_messages", resource: @category%>
-  <%= f.label :カテゴリー名 %>
-  <%= f.text_field :name, placeholder: "カテゴリー名を追加してください。"%>
-  <%=f.submit "登録", class:"btn btn-success"%>
-<% end %>
-

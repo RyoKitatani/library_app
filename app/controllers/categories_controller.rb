@@ -11,7 +11,6 @@ class CategoriesController < ApplicationController
       flash[:success] = "ジャンルを追加しました"
       redirect_to categories_path
     else
-      flash[:danger] = "ジャンル追加に失敗しました"
       @categories = Category.all
       render :index
     end
