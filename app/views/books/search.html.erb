@@ -1,20 +1,46 @@
-<%= form_with(url: search_books_path, local: true, method: :get, class: "search-form") do |form| %>
-      <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-      <%= form.submit "検索", class: "search-btn" %>
-    <% end %>
-<% if @books== [] %>
-<h2 class = "seach-result">検索結果はありません</h2>
-<% else %>
-<div class = "book-contents">
-  <ul class = "book-list">
-    <% @books.each do |b| %>
-    <li class = "list">
-      <%= link_to book_path(b.id) do %>
-      <h3 class='post-title'><%= b.title %></h3>
-      <p class = "root-show">〜クリックして詳細を見る〜</p>
+<div class="container pt-3">
+  <h2 class="text-center mt-5 mb-5 font-weight-bold">検索結果一覧</h2>
+  <div class="mb-5">
+    <%= render "books/search"%>
+  </div>
+  <% if @books== [] %>
+    <h2 class = "text-center font-weight-bold mt-5 pt-5">
+      検索結果はありません <br>
+      検索キーワードを変えて、再検索してみてください。
+    </h2>
+  <% else %>
+    <div class = "book-contents">
+    <ul class = "book-list">
+      <% @books.each do |b| %>
+      <li class = "list">
+        <%= link_to book_path(b.id) do %>
+        <h3 class='post-title'><%= b.title %></h3>
+        <p class = "root-show">〜クリックして詳細を見る〜</p>
+        <% end %>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
+  <% end %>
 </div>
-<% end %>
+
+<div class="container">
+<table class="w-100">
+<% @books.each do |b| %>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to book_path(b.id) do %>
+          <%= b.title %>
+        <% end %>
+      </td>
+      <% if b.rental_status == "貸出中" %>
+        <td class="text-center" style="color:red;"><%= b.rental_status%></td>
+      <% else %>
+        <td class="text-center" style="color:blue;"><%= b.rental_status%></td>
+      <% end %>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+</div>

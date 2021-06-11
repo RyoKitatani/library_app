@@ -9,7 +9,8 @@
   <div class="mb-3 row" style="max-width: auto;">
   <div class="row no-gutters">
     <div class="col-md-3 col-sm-5">
-     <%= attachment_image_tag @book, :image, width: "300px", height:"350px", format: 'jpeg', fallback:"no_image.png" %>
+     <img src="<%= @book.image_url %>" width="40" vspace="2">
+     <%# <%= attachment_image_tag @book, :image, width: "300px", height:"350px", format: 'jpeg', fallback:"no_image.png" %> 
     </div>
     <div class="col-md-5 offset-md-2 col-sm-5 offset-sm-2">
       <div class="card-body">

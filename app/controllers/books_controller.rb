@@ -17,7 +17,7 @@ class BooksController < ApplicationController
       json = Net::HTTP.get(uri)
       @bookjson = JSON.parse(json)
 
-      count = 5
+      count = 10
       @books = Array.new(count).map{Array.new(7)}
       count.times do |x|
         @books[x][0] = @bookjson.dig("items", x, "volumeInfo", "title")
@@ -73,10 +73,10 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     if @book.destroy
-      flash[:success] = "書籍情報を削除しました。"
-      redirect_to root_path
+      flash.now[:success] = "書籍情報を削除しました。"
+      redirect_to books_path
     else
-      flash[:danger] = "書籍情報の削除に失敗しました。"
+      flash.now[:danger] = "書籍情報の削除に失敗しました。"
       render :show
     end
   end
@@ -88,7 +88,7 @@ class BooksController < ApplicationController
   private
 
   def books_params
-    params.require(:book).permit(:title, :isbn, :image, :author, :publisher, :published_date, :category_id, :volume, :stock_num)
+    params.require(:book).permit(:title, :isbn, :image_url, :author, :publisher, :published_date, :category_id, :volume, :stock_num)
   end
 
 end
