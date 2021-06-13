@@ -1,8 +1,8 @@
 <%= render "layouts/flash" %>
-<div class="d-flex">
+<div class="d-flex container">
   <div class="col-md-12 pt-3">
-    <h2 class="text-center mt-5 font-weight-bold">書籍一覧</h2>
-    <div class="container pt-5">
+    <h2 class="text-center mt-5 font-weight-bold border-bottom">書籍一覧</h2>
+    <div class="pt-5">
       <div class="mb-5">
         <%= render "books/search"%>
       </div>
@@ -47,7 +47,9 @@
                    <img src="<%= b.image_url %>" width="100" vspace="2">
                    <% end %>
                   <div class="text-center small mr-4 ml-4">
-                    <%= b.title.truncate(20) %>
+                    <div class="linkedit">
+                      <%= b.title.truncate(20) %>
+                    </div>
                   </div>
                 <% end %>
               </div>
