@@ -6,8 +6,8 @@ class Book < ApplicationRecord
 
 
   validates :title, presence: true, length: {maximum: 100}
-  validates :author, presence: true, length: {maximum: 30 }
-  validates :publisher, presence: true, length: {maximum: 30 }
+  validates :author, presence: true, length: {maximum: 40 }
+  validates :publisher, presence: true, length: {maximum: 40 }
   validates :volume, presence: true, length: {maximum: 3 }
   validates :stock_num, presence: true, length: {maximum: 1 }
 
