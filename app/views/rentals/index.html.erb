@@ -3,7 +3,7 @@
 <table class="table">
       <thead class="thead-dark">
         <tr class="text-center">
-          <th>貸出番号</th>
+          <th>No.</th>
           <th>利用者</th>
           <th>書籍タイトル</th>
           <th>貸出日</th>
@@ -23,10 +23,10 @@
             <%= r.book.title %>
           </td>
           <td class="text-center">
-            <%= r.rental_date.strftime("%Y年%m月%d日%H時%M分") %>
+            <%= r.rental_date.strftime("%Y年%m月%d日\n%H時%M分") %>
           </td>
           <td class="text-center">
-            <%= r.due_date.strftime("%Y年%m月%d日%H時%M分") %>
+            <%= r.due_date.strftime("%Y年%m月%d日\n%H時%M分") %>
           </td>
           <td class="text-center">
             <% if r.user_id == current_user.id %>
