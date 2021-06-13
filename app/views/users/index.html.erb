@@ -16,12 +16,12 @@
     <div class="row d-flex">
   <% @users.each do |u| %>
     <div class="col-lg-2 col-md-4 col-sm-6 col-6 mt-2 mb-2 text-center">
-    <div class="border rounded">
+    <div class="border rounded pt-3 pb-3">
       <%= link_to user_path(u) do %>
-        <%= attachment_image_tag u, :image, class:"rounded-circle", size:"30x30", fallback:"no_image_icon.jpg"%> <br>
+        <%= attachment_image_tag u, :image, class:"rounded-circle mb-2", size:"100x100", fallback:"no_image_icon.jpg"%> <br>
         <%= u.name %> <br>
         <%= u.email %> <br>
-        借りている数:<%= u.rentals.count%>
+        貸出数:<%= u.rentals.count%>
       <% end %>
     </div>
     </div>
@@ -32,13 +32,15 @@
   <div class="row d-flex">
   <% @users.each do |u| %>
    <% if u.rentals.exists? %>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6 border rounded mt-2">
+    <div class="col-lg-2 col-md-4 col-sm-6 col-6 mt-2 mb-2 text-center">
+    <div class="border rounded">
       <%= link_to user_path(u) do %>
-        <%= attachment_image_tag u, :image, class:"rounded-circle", size:"30x30", fallback:"no_image_icon.jpg"%>
+        <%= attachment_image_tag u, :image, class:"rounded-circle", size:"100x100", fallback:"no_image_icon.jpg"%> <br>
         <%= u.name %> <br>
         <%= u.email %> <br>
-        借りている数:<%= u.rentals.count%>
+        貸出数:<%= u.rentals.count%>
       <% end %>
+    </div>
     </div>
   <% end %>
   <% end %>

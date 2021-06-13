@@ -16,9 +16,9 @@
   <% @books.each do |book| %>
      <img src="<%= book[1] %>" width="40" vspace="2">
      <%= link_to book[0], controller: "books", action: "new", title: book[0], code: book[5], author: book[2], publisher: book[3], publishedDate: book[4], img: book[1], pageCount: book[6] %>
-     <%= book[2] %> | 
+     <%= book[2] %> 
      <%= book[3] %>
-     <%= book[4] %> 
+     <%= book[4] %>
      <%= book[5] %>
      <%= book[6] %> <br>
  <br>  <% end %>
@@ -51,11 +51,11 @@
     </div>
   </div>
   <div class="form-row mb-3">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= f.label :出版月 %> <br>
       <%= f.text_field :published_date, class:"form-control", value: "#{@published_date}" %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= f.label :カテゴリー %> <br>
       <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "選択してください", class:"form-control" %>
     </div>
