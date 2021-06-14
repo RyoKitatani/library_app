@@ -1,7 +1,7 @@
 <%= render "layouts/flash" %>
 <div class="d-flex container">
   <div class="col-md-12 pt-3">
-    <h2 class="text-center mt-5 font-weight-bold border-bottom"> <%= @category.name %> ジャンルの書籍一覧 (全 <%= @books.count %> 冊)</h2>
+    <h2 class="text-center mt-5 font-weight-bold border-bottom"> <%= @category.name %> ジャンルの書籍一覧 (全 <%= @books.size %> 冊)</h2>
 <div class="d-flex">
   <% @books.each do |b| %>
     <div class="book-lists col-xl-2 col-md-2 col-sm-3 col-4 mt-3 text-center">
