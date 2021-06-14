@@ -15,15 +15,42 @@
     </div>
     <div class="col-md-5 col-sm-12">
       <div class="card-body">
-      <table>
-        <h4 class="card-title font-weight-bold"><%= @book.title %></h4>
-        <p class="card-text mt-5">ISBN番号: <%= @book.isbn %></p>
-        <p class="card-text">著者名: <%= @book.author %></p>
-        <p class="card-text">出版者名: <%= @book.publisher %></p>
-        <p class="card-text">出版年月: <%= @book.published_date %></p>
-        <p class="card-text">カテゴリー: <%= @book.category.name %></p>
-        <p class="card-text">容量: <%= @book.volume %> ページ</p>
-        <p class="card-text mb-2">貸出状況: <%= @book.rental_status %></p>
+      <table class="table">
+        <h4 class="card-title font-weight-bold mb-4"><%= @book.title %></h4>
+        <tbody>
+        <tr>
+          <th class="card-text mt-5">ISBN番号:</th>
+          <td><%= @book.isbn %></td>
+        </tr>
+        <tr>
+          <th class="card-text">著者名:</th>
+          <td><%= @book.author %></td>
+        </tr>
+        <tr>
+          <th class="card-text">出版者名:</th>
+          <td><%= @book.publisher %></td>
+        </tr>
+        <tr>
+          <th class="card-text">出版年月:</th>
+          <td><%= @book.published_date %></td>
+        </tr>
+        <tr>
+          <th class="card-text">カテゴリー:</th>
+          <td>
+            <%= link_to category_path(@book.category) do %>
+            <%= @book.category.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="card-text">容量:</th>
+          <td><%= @book.volume %> ページ</td>
+        </tr>
+        <tr>
+          <th class="card-text mb-2">貸出状況:</th>
+          <td><%= @book.rental_status %></td>
+        </tr>
+        </tbody>
       </table>
         <% if user_signed_in? && current_user.is_admin? %>
           <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success"%>
@@ -59,7 +86,7 @@
               <% end %>
             <% end %>
           <% end %>
-        <p class="card-text mt-5"><small class="text-muted">更新日：<%= @book.updated_at.strftime('%Y年%m月%d日')%></small></p>
+        <th class="card-text mt-5"><small class="text-muted">更新日：<%= @book.updated_at.strftime('%Y年%m月%d日')%></small></th>
        <div>
     </div>
   </div>
