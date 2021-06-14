@@ -1,2 +1,37 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= render "layouts/flash" %>
+<div class="container">
+  <div class="col-md-12 pt-3">
+    <h2 class="text-center mt-5 font-weight-bold mb-4 border-bottom">マイページ編集</h2>
+    <div class="container">
+    <div class="col-md-8 offset-md-2 pt-5">
+    <%= form_with model: @user, local: true do |f| %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-danger alert-dismissible">
+          <button class="close" data-dismiss="alert">&times;</button>
+          <span class="alert alert-<%= key %>",style="border: none;"><%= value %></span>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :プロフィール写真 %><br />
+        <%= attachment_image_tag @user, :image, class:"rounded-circle mb-2", size:"100x100", fallback:"no_image_icon.jpg"%>
+        <%= f.attachment_field :image %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :名前 %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "email" , class:"form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control"%>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新", style:"background-color:#7b9ad0; color: white;",class:"btn w-100" %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>

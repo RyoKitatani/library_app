@@ -5,7 +5,7 @@
         <tr class="text-center">
           <th>No.</th>
           <th>利用者</th>
-          <th>書籍タイトル</th>
+          <th>書籍</th>
           <th>貸出日</th>
           <th>返却予定日</th>
           <th></th>
@@ -23,15 +23,15 @@
             <%= r.book.title %>
           </td>
           <td class="text-center">
-            <%= r.rental_date.strftime("%Y年%m月%d日\n%H時%M分") %>
+            <%= r.rental_date.strftime("%y年%m月%d日%n%H時%M分") %>
           </td>
           <td class="text-center">
-            <%= r.due_date.strftime("%Y年%m月%d日\n%H時%M分") %>
+            <%= r.due_date.strftime("%Y年%m月%d日%n%H時%M分") %>
           </td>
           <td class="text-center">
             <% if r.user_id == current_user.id %>
               <%= link_to book_rental_path(r.book_id, current_user), class:"btn btn-danger", method: :delete, local: true do %>
-                返却する
+               <i class="fas fa-undo"></i>
              <% end %>
             <% end %>
           </td>

@@ -14,11 +14,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.update(users_params)
+    flash.now[:success] = "プロフィールを更新しました。"
+    redirect_to user_path(@user)
   end
 
   private 
 
   def users_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation )
+    params.require(:user).permit(:name, :email, :image, :password, :password_confirmation )
   end
 end
