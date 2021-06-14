@@ -28,7 +28,7 @@
 | 9 | rails/devise日本語化 | rails-i18n |
 | 10 | レスポンシブ対応 | Bootstrap |
 
-#使用方法
+# 使用方法
 
 ```
 $ git clone git@github.com:RyoKitatani/library_app.git
