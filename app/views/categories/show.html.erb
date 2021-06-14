@@ -1,0 +1,26 @@
+<%= render "layouts/flash" %>
+<div class="d-flex container">
+  <div class="col-md-12 pt-3">
+    <h2 class="text-center mt-5 font-weight-bold border-bottom"> <%= @category.name %> ジャンルの書籍一覧 (全 <%= @books.count %> 冊)</h2>
+<div class="d-flex">
+  <% @books.each do |b| %>
+    <div class="book-lists col-xl-2 col-md-2 col-sm-3 col-4 mt-3 text-center">
+      <%= link_to book_path(b) do %>
+        <% if b.image_url.nil? %>
+          <img src="/assets/no_image.png" width="100" vspace="2">
+         <% else %>
+          <img src="<%= b.image_url %>" width="100" vspace="2">
+        <% end %>
+        <div class="text-center small mr-4 ml-4">
+        <% if b.stock_num == 0 %>
+          <div class="linkedit">
+            <%= b.title.truncate(20)%>
+          </div>
+        <% else %>
+          <%= b.title.truncate(20)%>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

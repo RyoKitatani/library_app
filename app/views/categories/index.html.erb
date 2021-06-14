@@ -1,6 +1,7 @@
 <%= render "layouts/flash"%>
 <div class="container">
   <div class="col-md-12 pt-3">
+  <% if current_user.is_admin? %>
     <h2 class="text-center mt-5 font-weight-bold">カテゴリー登録</h2>
     <%= form_with model: @category, local: true do |f| %>
     <%= render "layouts/error_messages", resource: @category%>
@@ -9,29 +10,38 @@
         <%=f.submit "登録", class:"btn btn-success w-100"%>
       </div>
     <% end %>
-    <h2 class="text-center mt-5 font-weight-bold mb-4">カテゴリー一覧</h2>
-<div>
-<table class="table">
-  <thead class="thead-dark">
-    <tr class="text-center">
-      <th>No.</th>
-      <th>カテゴリー名</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <% @categories.each do |c| %>
-  <tbody>
-    <tr>
-      <td class="text-center"><%= c.id %></td>
-      <td> <%= c.name %></td>
-      <td class="text-center">
-        <%= link_to "編集", edit_category_path(c), class:"btn btn-success"%>
-         <%= link_to "削除", category_path(c), method: :delete,  class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
-      </td>
-    </tr>
-  </tbody>
   <% end %>
-
-</table>
-
+  <h2 class="text-center mt-5 font-weight-bold mb-4">カテゴリー一覧</h2>
+  <div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr class="text-center">
+        <th>No.</th>
+        <th>カテゴリー名</th>
+        <th>書籍数</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @categories.each do |c| %>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= c.id %></td>
+          <td class="text-center">
+            <%= link_to category_path(c) do %>
+            <%= c.name %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= c.books.count %> 冊
+          </td>
+          <td class="text-center">
+            <% if current_user.is_admin? %>
+              <%= link_to "編集", edit_category_path(c), class:"btn btn-success"%>
+              <%= link_to "削除", category_path(c), method: :delete,  class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
 </div>
