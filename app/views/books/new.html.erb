@@ -1,6 +1,6 @@
 <div class="container">
 <div class="col-md-12 pt-3">
-<h2 class="text-center border-bottom">書籍登録</h2>
+<h2 class="text-center border-bottom font-weight-bold">書籍登録</h2>
 <div>
  <div class="col-md-12">
   <%= form_tag('/booksearch', method: :get) do %>
@@ -11,24 +11,33 @@
         </span>
     </div>
   <% end %>
-<h2 class="mt-5">検索結果</h2>
 <% if @books.present? %>
-  <% @books.each do |book| %>
-     <img src="<%= book[1] %>" width="40" vspace="2">
-     <%= link_to book[0], controller: "books", action: "new", title: book[0], code: book[5], author: book[2], publisher: book[3], publishedDate: book[4], img: book[1], pageCount: book[6] %>
-     <%= book[2] %> 
-     <%= book[3] %>
-     <%= book[4] %>
-     <%= book[5] %>
-     <%= book[6] %> <br>
- <br>  <% end %>
+<h2 class="text-center border-bottom mt-4 font-weight-bold">検索結果</h2>
+  <div class="d-flex flex-wrap">
+    <% @books.each do |book| %>
+      <div class="book-lists col-xl-2 col-md-3 col-sm-3 col-4 mt-3 text-center small">
+      <div class=" mr-1 ml-1 border rounded">
+        <div class="col-12">
+        <img src="<%= book[1] %>" width="100%" vspace="2">
+        </div>
+        <%= link_to book[0], controller: "books", action: "new", title: book[0], code: book[5], author: book[2], publisher: book[3], publishedDate: book[4], img: book[1], pageCount: book[6] %> <br>
+        <%= book[2] %> <br>
+        <%= book[3] %> <br>
+        出版年月:<%= book[4] %> <br>
+        ISBN番号: <%= book[5] %> <br>
+        ページ数: <%= book[6] %> <br>
+      </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 </div>
-<div class="col-md-12">
+<div class="col-md-12 mt-5">
 <%= form_with model: @book, method: :post, local: true do |f| %>
   <%= render "layouts/error_messages", resource: @book %>
   <table>
-  <div class="form-group" class="form-group">
+   <h3 class="text-danger font-weight-bold text-center">注意: カテゴリーを必ず選択してください！</h3>
+  <div class="form-group">
     <%= f.label :タイトル %>
     <%= f.text_field :title, class:"form-control", placeholder:"書籍のタイトルを入力してください。", value: "#{@title}"%>
   </div>
@@ -52,7 +61,7 @@
   </div>
   <div class="form-row mb-3">
     <div class="col-md-2">
-      <%= f.label :出版月 %> <br>
+      <%= f.label :出版年月 %> <br>
       <%= f.text_field :published_date, class:"form-control", value: "#{@published_date}" %>
     </div>
     <div class="col-md-4">
@@ -69,7 +78,7 @@
     </div>
   </div>
   <div class="form-group">
-    <%= f.submit "書籍登録", class:"btn btn-primary"%>
+    <%= f.submit "書籍登録", class:"btn btn-primary w-100"%>
   </div>
   </table>
 <% end %>

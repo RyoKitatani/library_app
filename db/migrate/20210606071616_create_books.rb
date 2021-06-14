@@ -9,7 +9,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string    :publisher
       t.date  :published_date
       t.integer   :volume
-      t.integer   :stock_num, null: false
+      t.integer   :stock_num, null: false, default: 1
       t.timestamps
     end
   end

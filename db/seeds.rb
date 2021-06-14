@@ -13,7 +13,7 @@ User.create!(name: "Example User",
            password_confirmation: "123456",
            is_admin: true)
 
-20.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "example#{n + 1}@gmail.com"
   password = "123456"
@@ -23,10 +23,26 @@ User.create!(name: "Example User",
             password_confirmation: password)
 end
 
-20.times do |n|
-  name = Faker::Book.genre
-  Category.create!(name: name)
-end
+Category.create([
+  {name: "文学・評論"},
+  {name: "ノンフィクション"},
+  {name: "歴史・地理"},
+  {name: "政治・社会"},
+  {name: "芸能・エンターテインメント"},
+  {name: "アート・建築"},
+  {name: "デザイン"},
+  {name: "思想・宗教"},
+  {name: "暮らし・健康・料理"},
+  {name: "サイエンス"},
+  {name: "テクノロジー"},
+  {name: "教育・自己啓発"},
+  {name: "スポーツ"},
+  {name: "マーケティング"},
+  {name: "プログラミング"},
+  {name: "音楽"},
+  {name: "コミック"}
+])
+
 
 
 Book.create!(title: Faker::Book.title,
@@ -38,7 +54,7 @@ Book.create!(title: Faker::Book.title,
              volume: 10,
              stock_num: 0)
 
-20.times do |n|
+10.times do |n|
   title = Faker::Book.title
   isbn =  Faker::Number.number(digits:13 )
   publisher = Faker::Book.publisher

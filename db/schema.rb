@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_143057) do
     t.string "publisher"
     t.date "published_date"
     t.integer "volume"
-    t.integer "stock_num", null: false
+    t.integer "stock_num", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_books_on_category_id"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_06_09_143057) do
     t.integer "book_id"
     t.datetime "rental_date"
     t.datetime "due_date"
-    t.datetime "return_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_rentals_on_book_id"

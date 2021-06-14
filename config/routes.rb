@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :categories, only:[:index, :new, :show, :create, :edit, :update, :destroy]
   resources :rentals, only:[:index]
   post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
+  post 'homes/admin_sign_in', to: 'homes#admin_sign_in'
   get '/booksearch', to: 'books#new'
 end

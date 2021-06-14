@@ -4,7 +4,7 @@
     </div>
   </div>
 <div class="container">
-  <div class="mb-3" style="max-width: auto;">
+  <div class="mb-1" style="max-width: auto;">
   <div class="row no-gutters">
     <div class="col-md-6 col-sm-12 text-center">
       <% if @book.image_url.nil? %>
@@ -47,21 +47,21 @@
           <td><%= @book.volume %> ページ</td>
         </tr>
         <tr>
-          <th class="card-text mb-2">貸出状況:</th>
+          <th class="card-text">貸出状況:</th>
           <td><%= @book.rental_status %></td>
         </tr>
         </tbody>
       </table>
         <% if user_signed_in? && current_user.is_admin? %>
-          <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success"%>
-          <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger", data: {confirm: "削除してよろしいでしょうか？"}%>
+          <%= link_to "編集する", edit_book_path(@book), class:"btn btn-success w-100 mb-1"%>
+          <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-100 mb-1", data: {confirm: "削除してよろしいでしょうか？"}%>
         <% end %>
           <% if @book.bookmarked_by?(current_user) %>
-            <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-3", local: true do %>
+            <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-1", local: true do %>
             ブックマークをやめる<i class="fas fa-bookmark"></i>
             <% end %>
           <% else %>
-            <%= link_to book_bookmarks_path(book_id: @book.id), method: :post, class:"btn btn-info w-100 mb-3", local: true do %>
+            <%= link_to book_bookmarks_path(book_id: @book.id), method: :post, class:"btn btn-info w-100 mb-1", local: true do %>
               ブックマークする<i class="far fa-bookmark"></i>
             <% end %>
           <% end %>
