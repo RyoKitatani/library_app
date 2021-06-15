@@ -7,5 +7,8 @@ class User < ApplicationRecord
   has_many :rentals, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  validates :name, presence: true, length: { maximum: 20}
+  validates :email, presence: true, uniqueness: true
+
   attachment :image
 end
