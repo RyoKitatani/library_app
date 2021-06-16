@@ -37,3 +37,13 @@ $ rails db:migrate
 $ rails db:seed
 $ rails s
 ```
+
+# ログイン方法
+
+なお、今回は、 <br>
+通常ユーザー　⇨　ゲストログイン <br>
+管理者(admin) ⇨　管理者ログイン
+
+を設置しております。
+
+
