@@ -24,6 +24,9 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    unless current_user.is_admin
+      redirect_to categories_path
+    end
   end
 
   def update

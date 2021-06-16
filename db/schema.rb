@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_143057) do
 
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "isbn", null: false
+    t.integer "isbn"
     t.string "image_url"
     t.integer "category_id"
     t.string "author"

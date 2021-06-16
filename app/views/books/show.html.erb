@@ -1,3 +1,4 @@
+<%= render "layouts/flash" %>
 <div class="d-flex container">
   <div class="col-md-12 pt-3 mb-5">
     <h2 class="text-center mt-5 font-weight-bold border-bottom">書籍詳細</h2>
@@ -7,7 +8,7 @@
   <div class="mb-1" style="max-width: auto;">
   <div class="row no-gutters">
     <div class="col-md-6 col-sm-12 text-center">
-      <% if @book.image_url.nil? %>
+      <% if @book.image_url.nil? || @book.image_url.empty? %>
         <img src="/assets/no_image.png" width="300" vspace="2">
       <% else %>
         <img src="<%= @book.image_url %>" width="300" vspace="2">

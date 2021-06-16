@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.includes(:rentals).order(name: :desc)
   end
-  
+
   def show
     @user = User.find(params[:id])
     @bookmarks = @user.bookmarks
@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to users_path
+    end
   end
 
   def update

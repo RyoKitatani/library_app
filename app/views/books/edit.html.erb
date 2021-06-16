@@ -1,45 +1,55 @@
+<div class="d-flex container">
+  <div class="col-md-12 pt-3 mb-5">
+    <h2 class="text-center mt-5 font-weight-bold border-bottom">書籍情報編集</h2>
+    </div>
+  </div>
 <div class="container">
-<h2>書籍情報の編集</h2>
-<%= form_with model: @book, local: true do |f| %>
-  <div>
-    <%= f.label :タイトル %>
-    <%= f.text_field :title, placeholder:"書籍のタイトルを入力してください。"%>
-  </div>
-  <div>
-    <%= f.label :ISBN番号 %>
-    <%= f.text_field :isbn, placeholder:"13桁で入力。"%>
-  </div>
-  <div>
-    <%= f.label :書籍画像 %>
-   
-    <%= f.text_field :image_url %>
-  </div>
-  <div>
-    <%= f.label :著者 %>
-    <%= f.text_field :author %>
-  </div>
-  <div>
-    <%= f.label :出版者 %>
-    <%= f.text_field :publisher%>
-  </div>
-  <div>
-    <%= f.label :出版月 %>
-    <%= f.text_field :published_date %>
-  </div>
-  <div>
-    <%= f.label :カテゴリー %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, include_blanck: "選択してください"%>
-  </div>
-  <div>
-    <%= f.label :容量・ページ数 %>
-    <%= f.text_field :volume, placeholder:"ページ数を入力してください。"%>
-  </div>
-  <div>
-    <%= f.label :部数 %>
-    <%= f.text_field :stock_num, placeholder:"何冊ありますか？"%>
-  </div>
-  <div>
-    <%= f.submit "更新", class:"btn btn-primary"%>
-  </div>
-<% end %>
+ <%= form_with model: @book, local: true do |f| %>
+  <div class="mb-1" style="max-width: auto;">
+    <div class="col-md-12 col-sm-12">
+      <div class="card-body">
+      <table class="table">
+        <h4 class="card-title font-weight-bold mb-4">
+          <%= f.text_field :title, placeholder:"書籍のタイトルを入力してください。", class:"form-control" %>
+        </h4>
+        <tbody>
+        <tr>
+          <th class="card-text text-center text-center">書籍画像</th>
+          <td><%= f.text_field :image_url, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">ISBN番号</th>
+          <td><%= f.text_field :isbn, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">著者名</th>
+          <td><%= f.text_field :author, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">出版者名</th>
+          <td><%= f.text_field :publisher, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">出版年月</th>
+          <td><%= f.text_field :published_date, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">カテゴリー</th>
+          <td><%= f.collection_select :category_id, Category.all, :id, :name, include_blanck: "選択してください", class:"w-50 form-control" %></td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">容量</th>
+          <td><%= f.text_field :volume, class:"w-25", placeholder:"ページ数を入力してください。", class:"form-control" %> ページ</td>
+        </tr>
+        <tr>
+          <th class="card-text text-center">冊数</th>
+          <td><%= f.text_field :stock_num, class:"w-25", placeholder:"何冊ありますか？", class:"form-control" %> 冊</td>
+        </tr>
+        </tbody>
+      </table>
+        <%= f.submit "更新", class:"btn btn-primary w-100"%>
+    </div>
+  <% end %>
+</div>
+</div>
 </div>

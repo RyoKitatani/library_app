@@ -6,6 +6,9 @@ class BooksController < ApplicationController
   end
 
   def new
+    unless current_user.is_admin
+      redirect_to books_path
+    end
     @book = Book.new
 
     #書籍検索APIの処理
@@ -57,7 +60,10 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    unless current_user.is_admin
+      redirect_to books_path
+    end
+   @book = Book.find(params[:id])
   end
 
   def update
