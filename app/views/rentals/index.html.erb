@@ -1,4 +1,5 @@
 <div class="container pt-3">
+<%= render "layouts/flash"%>
 <h2 class="text-center mt-5 mb-5 font-weight-bold">貸出状況一覧</h2>
 <table class="table">
       <thead class="thead-dark">
@@ -30,7 +31,7 @@
           </td>
           <td class="text-center">
             <% if r.user_id == current_user.id %>
-              <%= link_to book_rental_path(r.book_id, current_user), class:"btn btn-danger", method: :delete, local: true do %>
+              <%= link_to book_rental_path(r.book_id, current_user), class:"btn btn-danger", method: :delete, data:{ confirm: "返却してよろしいでしょうか？"}, local: true do %>
                <i class="fas fa-undo"></i>
              <% end %>
             <% end %>

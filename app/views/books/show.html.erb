@@ -1,5 +1,6 @@
-<%= render "layouts/flash" %>
-<div class="d-flex container">
+<div class="container">
+  <%= render "layouts/flash" %>
+  <div class="d-flex">
   <div class="col-md-12 pt-3 mb-5">
     <h2 class="text-center mt-5 font-weight-bold border-bottom">書籍詳細</h2>
     </div>
@@ -14,7 +15,7 @@
         <img src="<%= @book.image_url %>" width="300" vspace="2">
       <% end %>
     </div>
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-6 col-sm-12">
       <div class="card-body">
       <table class="table">
         <h4 class="card-title font-weight-bold mb-4"><%= @book.title %></h4>
@@ -58,7 +59,7 @@
           <%= link_to "削除する", book_path(@book), method: :delete, class:"btn btn-danger w-100 mb-1", data: {confirm: "削除してよろしいでしょうか？"}%>
         <% end %>
           <% if @book.bookmarked_by?(current_user) %>
-            <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-1", local: true do %>
+            <%= link_to book_bookmark_path(book_id: @book.id), method: :delete, class:"btn btn-secondary w-100 mb-1", data:{ confirm: "ブックマークを解除してよろしいでしょうか？"}, local: true do %>
             ブックマークをやめる<i class="fas fa-bookmark"></i>
             <% end %>
           <% else %>
@@ -78,7 +79,7 @@
             <% end %>
           <% else %>
             <% if @book.rentaled_by?(current_user) %>
-              <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-danger w-100" ,local: true do %>
+              <%= link_to book_rental_path(book_id: @book.id), method: :delete, class:"btn btn-danger w-100", data:{ confirm: "#{@book.title }返却してよろしいでしょうか？"}, local: true do %>
                 返却する
               <% end %>
             <% else %>
@@ -91,6 +92,7 @@
        <div>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>

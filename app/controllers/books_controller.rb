@@ -52,7 +52,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(books_params)
     if @book.save
-      flash.now[:success] = "書籍の登録が完了しました。"
+      flash[:success] = "書籍の登録が完了しました。"
       redirect_to book_path(@book)
     else
       render :new
